@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionário</title>
+    <title>História Interativa</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,8 +11,8 @@
             margin: 0;
             padding: 20px;
         }
-        .questionnaire {
-            max-width: 600px;
+        .story-container {
+            max-width: 800px;
             margin: 0 auto;
             background: #fff;
             padding: 20px;
@@ -20,7 +20,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .question {
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
         .question h2 {
             font-size: 18px;
@@ -49,53 +49,75 @@
     </style>
 </head>
 <body>
-    <div class="questionnaire">
-        <h1>Questionário de Conhecimentos</h1>
-        
-        <!-- Pergunta 1 -->
-        <div class="question">
-            <h2>1. Qual é a capital do Brasil?</h2>
-            <div class="options">
-                <label><input type="radio" name="q1" value="a"> São Paulo</label>
-                <label><input type="radio" name="q1" value="b"> Brasília</label>
-                <label><input type="radio" name="q1" value="c"> Rio de Janeiro</label>
-                <label><input type="radio" name="q1" value="d"> Salvador</label>
-            </div>
-        </div>
-        
-        <!-- Pergunta 2 -->
-        <div class="question">
-            <h2>2. Qual é o maior planeta do sistema solar?</h2>
-            <div class="options">
-                <label><input type="radio" name="q2" value="a"> Terra</label>
-                <label><input type="radio" name="q2" value="b"> Marte</label>
-                <label><input type="radio" name="q2" value="c"> Júpiter</label>
-                <label><input type="radio" name="q2" value="d"> Saturno</label>
+    <div class="story-container">
+        <h1>Aventura Interativa</h1>
+
+        <!-- História e Pergunta 1 -->
+        <div id="story-part">
+            <p id="story-text">Você está em uma floresta misteriosa. De repente, você encontra uma bifurcação no caminho. Para onde você quer ir?</p>
+            <div class="question">
+                <h2>Escolha uma direção:</h2>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> Seguir para a esquerda</label>
+                    <label><input type="radio" name="q1" value="b"> Seguir para a direita</label>
+                </div>
+                <button class="submit-btn" onclick="nextPart()">Próxima</button>
             </div>
         </div>
 
-        <button class="submit-btn" onclick="submitQuiz()">Enviar Respostas</button>
+        <!-- História e Pergunta 2 -->
+        <div id="story-part-2" style="display:none;">
+            <p id="story-text-2"></p>
+            <div class="question">
+                <h2>Escolha uma ação:</h2>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> Explorar a caverna</label>
+                    <label><input type="radio" name="q2" value="b"> Continuar pelo caminho</label>
+                </div>
+                <button class="submit-btn" onclick="endStory()">Concluir</button>
+            </div>
+        </div>
+
+        <!-- Resultado -->
+        <div id="result" style="display:none;">
+            <p id="result-text"></p>
+        </div>
     </div>
 
     <script>
-        function submitQuiz() {
-            const answers = {
-                q1: 'b', // Resposta correta para a Pergunta 1
-                q2: 'c'  // Resposta correta para a Pergunta 2
-            };
+        function nextPart() {
+            const choice = document.querySelector('input[name="q1"]:checked');
+            if (choice) {
+                document.getElementById('story-part').style.display = 'none';
+                document.getElementById('story-part-2').style.display = 'block';
 
-            let score = 0;
-            for (let question in answers) {
-                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
-                if (selectedOption && selectedOption.value === answers[question]) {
-                    score++;
+                const storyText2 = document.getElementById('story-text-2');
+                if (choice.value === 'a') {
+                    storyText2.textContent = 'Você segue para a esquerda e encontra uma caverna. O que você faz a seguir?';
+                } else {
+                    storyText2.textContent = 'Você segue para a direita e continua pela trilha. O que você faz a seguir?';
                 }
+            } else {
+                alert('Por favor, selecione uma opção.');
             }
+        }
 
-            alert(`Você acertou ${score} de ${Object.keys(answers).length} questões.`);
+        function endStory() {
+            const choice = document.querySelector('input[name="q2"]:checked');
+            const resultText = document.getElementById('result-text');
+            if (choice) {
+                document.getElementById('story-part-2').style.display = 'none';
+                document.getElementById('result').style.display = 'block';
+
+                if (choice.value === 'a') {
+                    resultText.textContent = 'Você explora a caverna e encontra um tesouro escondido. Parabéns, você encontrou o tesouro!';
+                } else {
+                    resultText.textContent = 'Você continua pelo caminho e encontra uma saída segura da floresta. Você conseguiu!';
+                }
+            } else {
+                alert('Por favor, selecione uma opção.');
+            }
         }
     </script>
 </body>
 </html>
->
-<img src="imagens/guerra.png" alt="Descrição da Imagem" style="max-width:100%; height:auto;">
