@@ -7,14 +7,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f4f4f4; /* Cor de fundo padrão para quando a imagem não carrega */
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-image: url('imagens/fundo.jpg'); /* Substitua 'fundo.jpg' pelo nome da sua imagem */
+            background-size: cover; /* Ajusta o tamanho da imagem para cobrir toda a tela */
+            background-position: center; /* Centraliza a imagem de fundo */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
         }
         .story-container {
             max-width: 800px;
             margin: 0 auto;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9); /* Adiciona um fundo branco semi-transparente para o conteúdo */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
