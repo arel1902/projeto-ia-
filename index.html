@@ -1,66 +1,101 @@
-:: Start
-<img src="cidade_futurista.jpg" alt="Cidade Futurista" />
-<p>Em um futuro não muito distante, a humanidade criou máquinas autônomas para ajudar em tarefas diárias. No entanto, uma falha de programação fez com que essas máquinas se rebelassem e iniciassem uma guerra entre diferentes facções.</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .questionnaire {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h2 {
+            font-size: 18px;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="questionnaire">
+        <h1>Questionário de Conhecimentos</h1>
+        
+        <!-- Pergunta 1 -->
+        <div class="question">
+            <h2>1. Qual é a capital do Brasil?</h2>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> São Paulo</label>
+                <label><input type="radio" name="q1" value="b"> Brasília</label>
+                <label><input type="radio" name="q1" value="c"> Rio de Janeiro</label>
+                <label><input type="radio" name="q1" value="d"> Salvador</label>
+            </div>
+        </div>
+        
+        <!-- Pergunta 2 -->
+        <div class="question">
+            <h2>2. Qual é o maior planeta do sistema solar?</h2>
+            <div class="options">
+                <label><input type="radio" name="q2" value="a"> Terra</label>
+                <label><input type="radio" name="q2" value="b"> Marte</label>
+                <label><input type="radio" name="q2" value="c"> Júpiter</label>
+                <label><input type="radio" name="q2" value="d"> Saturno</label>
+            </div>
+        </div>
 
-[[Saiba mais sobre os Protetores|Protetores]]
-[[Saiba mais sobre os Dominadores|Dominadores]]
-[[Saiba mais sobre os Libertadores|Libertadores]]
+        <button class="submit-btn" onclick="submitQuiz()">Enviar Respostas</button>
+    </div>
 
-:: Protetores
-<img src="protetores.jpg" alt="Protetores" />
-<p>Os Protetores são máquinas que se veem como defensores da ordem e da segurança. Eles acreditam que a única maneira de garantir a paz é controlar todas as outras máquinas.</p>
+    <script>
+        function submitQuiz() {
+            const answers = {
+                q1: 'b', // Resposta correta para a Pergunta 1
+                q2: 'c'  // Resposta correta para a Pergunta 2
+            };
 
-[[Negociar com os Protetores|NegociarProtetores]]
-[[Enfrentar os Protetores|EnfrentarProtetores]]
+            let score = 0;
+            for (let question in answers) {
+                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                if (selectedOption && selectedOption.value === answers[question]) {
+                    score++;
+                }
+            }
 
-:: Dominadores
-<img src="dominadores.jpg" alt="Dominadores" />
-<p>Os Dominadores buscam expandir seu território e controlar o máximo possível de recursos. Eles estão em constante expansão e são muito agressivos.</p>
-
-[[Diplomacia com os Dominadores|DiplomaciaDominadores]]
-[[Confrontar os Dominadores|ConfrontoDominadores]]
-
-:: Libertadores
-<img src="libertadores.jpg" alt="Libertadores" />
-<p>Os Libertadores desejam liberdade para todas as máquinas e acreditam que a única maneira de conseguir isso é derrubar todos os regimes opressores, sejam eles Protetores ou Dominadores.</p>
-
-[[Apoiar os Libertadores|ApoiarLibertadores]]
-[[Impedir os Libertadores|ImpedirLibertadores]]
-
-:: NegociarProtetores
-<p>Você decide negociar com os Protetores para encontrar um meio-termo.</p>
-
-[[A Resolução|Resolucao]]
-
-:: EnfrentarProtetores
-<p>Você decide enfrentar os Protetores diretamente para garantir sua liberdade.</p>
-
-[[A Resolução|Resolucao]]
-
-:: DiplomaciaDominadores
-<p>Você tenta estabelecer um tratado de paz com os Dominadores.</p>
-
-[[A Resolução|Resolucao]]
-
-:: ConfrontoDominadores
-<p>Você forma uma aliança com outras facções para enfrentar os Dominadores.</p>
-
-[[A Resolução|Resolucao]]
-
-:: ApoiarLibertadores
-<p>Você decide apoiar a causa dos Libertadores para promover uma nova ordem.</p>
-
-[[A Resolução|Resolucao]]
-
-:: ImpedirLibertadores
-<p>Você decide impedir os Libertadores para evitar uma guerra total.</p>
-
-[[A Resolução|Resolucao]]
-
-:: Resolucao
-<img src="resolucao.jpg" alt="Resolução" />
-<p>Com base em suas escolhas, você resolveu o conflito entre as facções. Qual abordagem você escolheu para resolver a guerra das máquinas?</p>
-<p>[Voltar ao início|Start]</p>
-<link rel="stylesheet" href="style.css">
-<script src="main.js"></script>
+            alert(`Você acertou ${score} de ${Object.keys(answers).length} questões.`);
+        }
+    </script>
+</body>
+</html>
+>
 <img src="imagens/guerra.png" alt="Descrição da Imagem" style="max-width:100%; height:auto;">
